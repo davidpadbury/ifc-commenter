@@ -1,0 +1,46 @@
+{
+  "name": "ifc-commenter",
+  "version": "1.0.0",
+  "description": "Mark up IFC files",
+  "main": "index.js",
+  "scripts": {
+    "lint": "standardx **/*.ts",
+    "unit-test": "mocha -r ts-node/register 'test/**/*-spec.ts'",
+    "test": "npm run lint && npm run unit-test",
+    "format": "standardx --fix **/*.ts"
+  },
+  "bin": "ts-node lib/cli.ts",
+  "keywords": [
+    "ifc"
+  ],
+  "author": "David Padbury <david@davidpadbury.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^13.1.4",
+    "@typescript-eslint/eslint-plugin": "^2.14.0",
+    "@typescript-eslint/parser": "^2.14.0",
+    "chai": "^4.2.0",
+    "chalk": "^3.0.0",
+    "diff": "^4.0.1",
+    "mocha": "^6.2.2",
+    "standardx": "^5.0.0",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.4"
+  },
+  "dependencies": {
+    "detect-newline": "^3.1.0",
+    "yargs": "^15.1.0"
+  },
+  "eslintConfig": {
+    "rules": {
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": "error"
+    }
+  },
+  "standardx": {
+    "parser": "@typescript-eslint/parser",
+    "plugins": [ "@typescript-eslint/eslint-plugin" ],
+    "env": [ "mocha" ]
+  }
+}
