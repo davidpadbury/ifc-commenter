@@ -5,13 +5,13 @@ import yargs = require('yargs')
 const argv = yargs.argv
 
 const usage = () => {
-    const message = [
-        'Usage: ifc-commenter [options] filename',
-        '   --indent indent to use between nested generated comments',
-        '   --output write the output to a file rather than stdout'
-    ].join('\n')
+  const message = [
+    'Usage: ifc-commenter [options] filename',
+    '   --indent indent to use between nested generated comments',
+    '   --output write the output to a file rather than stdout'
+  ].join('\n')
 
-    console.error(message)
+  console.error(message)
 }
 
 if (argv._.length !== 1) {
@@ -35,11 +35,10 @@ const indent = argv.indent || comment.defaultIndent
 const result = comment(content, indent)
 
 if (argv.output) {
-    try { fs.writeFileSync(argv.output, result) }
-    catch (err) {
-        console.error(err)
-        process.exit(1)
-    }
+  try { fs.writeFileSync(argv.output, result) } catch (err) {
+    console.error(err)
+    process.exit(1)
+  }
 } else {
-    process.stdout.write(result)
+  process.stdout.write(result)
 }
