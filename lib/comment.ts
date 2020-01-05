@@ -9,9 +9,9 @@ comment.defaultIndent = defaultIndent
 /**
  * Append the IFS content supplied in `input` with comments of the instructions being referenced.
  * As there can be forward references we go over the input twice.
- * On the first we collect the id of the line (if specified), and all the other instructions it references.
- * On the second we print each line and if it references any instructions print their respect lines as comments.
- * If these comments reference other instructions we print these indented.
+ * On the first we collect the id of the line (if specified), and all other instructions it references.
+ * On the second we print each line and if it references any instructions, print their respective lines as comments.
+ * If these comments reference other instructions we print as well with an additional indent.
  */
 export default function comment (input: string, indent: string = defaultIndent): string {
   // in an attempt to support files created on windows try to guess at what the newline character of the content is
