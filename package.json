@@ -1,6 +1,6 @@
 {
   "name": "ifc-commenter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Mark up IFC files",
   "main": "index.js",
   "scripts": {
