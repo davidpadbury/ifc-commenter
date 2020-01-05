@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import comment from './comment'
 import fs = require('fs')
 import yargs = require('yargs')
