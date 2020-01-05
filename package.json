@@ -40,7 +40,11 @@
   },
   "standardx": {
     "parser": "@typescript-eslint/parser",
-    "plugins": [ "@typescript-eslint/eslint-plugin" ],
-    "env": [ "mocha" ]
+    "plugins": [
+      "@typescript-eslint/eslint-plugin"
+    ],
+    "env": [
+      "mocha"
+    ]
   }
 }
