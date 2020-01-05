@@ -20,20 +20,26 @@ export default function comment (input: string, indent: string = defaultIndent):
   // split into individual lines (for the time being we assume instructions are not split between lines)
   const lines = input.split(newLine)
   // sparse array indexed by line number containing the instruction id that line contains
-  const lineIds = []
+  const lineIds: Array<number> = []
   // sparse array indexed by id containing the line number of that instruction
-  const idLines = []
+  const idLines: Array<number> = []
   // map from instruction id to an array of instruction ids that the instruction referenced
-  const references = {}
+  const references: Map<number, Array<number>> = new Map<number, Array<number>>()
 
-  let output = null
+  let output: string = ''
 
   // add a line to the output
   // prepend a new line if there has been prior output
-  const appendLine = line => {
-    if (output) output += newLine + line
-    else output = line
-  }
+  const appendLine = (() => {
+    let first = true
+    return (line: string) => {
+      if (!first) output += newLine + line
+      else {
+        output = line
+        first = false
+      }
+    }
+  })()
 
   // first parse to index identifiers and references
   lines.forEach((text, index) => {
@@ -44,7 +50,7 @@ export default function comment (input: string, indent: string = defaultIndent):
 
     lineIds[index] = result.id
     idLines[result.id] = index
-    references[result.id] = result.references
+    references.set(result.id, result.references)
   })
 
   // second parse to build the output
@@ -64,9 +70,9 @@ export default function comment (input: string, indent: string = defaultIndent):
      * Depth indicates how much to indent the comments as we also print references
      * of references in a hierarchy.
      */
-  function printReferences (id, depth = 0) {
+  function printReferences (id: number, depth = 0) {
     // for each reference of this instruction
-    (references[id] || []).forEach(ref => {
+    (references.get(id) || []).forEach(ref => {
       // lookup the line text of the instruction
       const refLine = lines[idLines[ref]]
 
@@ -93,7 +99,7 @@ export default function comment (input: string, indent: string = defaultIndent):
 /**
  * Parse all instruction ids from line.
  */
-function parseLine (line) {
+function parseLine (line: string) {
   let id = null
   const references = []
 

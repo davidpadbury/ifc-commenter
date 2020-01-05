@@ -10,7 +10,7 @@ describe('comment', () => {
   describe('examples', () => {
     testExample('simple')
 
-    function testExample (name) {
+    function testExample (name: string) {
       it(`should produce expected output for ${name}.ifc`, () => {
         const input = readExample(`${name}.ifc`)
         const expected = readExample(`${name}.expected.ifc`)
@@ -56,6 +56,6 @@ describe('comment', () => {
   })
 })
 
-function readExample (filename) {
+function readExample (filename: string) {
   return fs.readFileSync(path.join(__dirname, 'examples', filename), 'utf8')
 }

@@ -21,7 +21,7 @@ if (argv._.length !== 1) {
 
 const filename = argv._[0]
 
-const readFile = () => {
+const readFile: () => string = () => {
   try {
     return fs.readFileSync(filename, 'utf8')
   } catch (err) {
@@ -31,11 +31,12 @@ const readFile = () => {
 }
 
 const content = readFile()
-const indent = argv.indent || comment.defaultIndent
+const indent = argv.indent as string || comment.defaultIndent
 const result = comment(content, indent)
+const outputFilename = argv.output as string
 
-if (argv.output) {
-  try { fs.writeFileSync(argv.output, result) } catch (err) {
+if (outputFilename) {
+  try { fs.writeFileSync(outputFilename, result) } catch (err) {
     console.error(err)
     process.exit(1)
   }
