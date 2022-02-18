@@ -32,3 +32,7 @@ npm install --global ifc-commenter
 
 ifc-commenter example.ifc
 ```
+
+To export out a commented file:
+
+`ifc-commenter example.ifc --output example_commented_.ifc`
